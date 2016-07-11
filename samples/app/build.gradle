@@ -30,8 +30,8 @@ repositories {
 }
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "com.example.app.twitter"
@@ -82,11 +82,16 @@ dependencies {
     compile project(':twitter-mopub')
     compile rootProject.appCompat
     compile rootProject.design
-
     debugCompile rootProject.leakCanary
     releaseCompile rootProject.leakCanaryNoOp
-
     androidTestCompile rootProject.spoon
-    androidTestCompile rootProject.espresso
-    androidTestCompile rootProject.androidTestingSupport
+    androidTestCompile (rootProject.espresso){
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile (rootProject.androidTestingSupport){
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.0@aar') {
+        transitive = true;
+    }
 }

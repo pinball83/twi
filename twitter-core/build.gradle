@@ -22,8 +22,8 @@ apply plugin: 'com.android.library'
 apply from: rootProject.commonPlugins
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         versionCode 1
@@ -87,30 +87,25 @@ dependencies {
     compile rootProject.fabric
     compile rootProject.retrofit
     compile rootProject.gson
-
     debugCompile rootProject.fabricTest
-
     //Will use the provided packages if they are available in the app developers workspace.
     provided rootProject.okHttp
     provided rootProject.okHttpUrlConnection
-
-    androidTestCompile (rootProject.junitAddons) {
+    androidTestCompile(rootProject.junitAddons) {
         transitive = false
     }
-
     androidTestCompile rootProject.mockito
     androidTestCompile rootProject.dexmakerMockito
     androidTestCompile rootProject.fabricTest
-
     testCompile rootProject.fabricTest
     testCompile rootProject.mockito
     testCompile rootProject.junit
     testCompile rootProject.mavenAntTasks
-    testCompile(rootProject.robolectric) {
+    testCompile(rootProject.robolectric){
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    testCompile (rootProject.junitAddons) {
+    testCompile(rootProject.junitAddons) {
         transitive = false
     }
 }

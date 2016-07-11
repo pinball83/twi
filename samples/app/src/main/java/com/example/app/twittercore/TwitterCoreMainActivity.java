@@ -24,14 +24,14 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.example.app.BaseActivity;
+import com.example.app.R;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
-
-import com.example.app.R;
 
 public class TwitterCoreMainActivity extends BaseActivity {
 
@@ -61,7 +61,11 @@ public class TwitterCoreMainActivity extends BaseActivity {
         loginButton.setCallback(new Callback<TwitterSession>() {
             @Override
             public void success(Result<TwitterSession> result) {
-                requestEmailAddress(getApplicationContext(), result.data);
+                TwitterAuthToken authToken = result.data.getAuthToken();
+                System.out.println("twitter authToken = " + authToken);
+                long id = result.data.getId();
+                System.out.println("twitter id = " + id);
+//                requestEmailAddress(getApplicationContext(), result.data);
             }
 
             @Override

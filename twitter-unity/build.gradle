@@ -22,8 +22,8 @@ apply from: rootProject.commonPlugins
 apply plugin: 'io.fabric.gradle.unity'
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         versionCode 1
@@ -81,10 +81,9 @@ ext.projectDependencies = [
 ]
 
 dependencies {
-    provided fileTree(dir: 'libs', include: ['unity.jar'])
+    provided fileTree(include: ['unity.jar'], dir: 'libs')
     projectDependencies.each { path, binary ->
         compile projectOrBinary(path: path, binary: binary)
     }
-
     compile rootProject.fabric
 }

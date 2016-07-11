@@ -21,8 +21,8 @@ apply plugin: 'com.android.library'
 apply from: rootProject.commonPlugins
 
 android {
-    compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 23
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         versionCode 1
@@ -76,16 +76,15 @@ dependencies {
     projectDependencies.each { path, binary ->
         compile projectOrBinary(path: path, binary: binary)
     }
-
     compile rootProject.fabric
     compile rootProject.picasso
     compile rootProject.tweetText
-
     testCompile rootProject.fabricTest
     testCompile rootProject.mockito
     testCompile rootProject.junit
     testCompile rootProject.mavenAntTasks
-    testCompile(rootProject.robolectric) {
+    testCompile(rootProject.robolectric)
+    {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
